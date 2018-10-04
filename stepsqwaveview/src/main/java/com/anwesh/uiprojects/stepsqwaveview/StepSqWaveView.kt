@@ -21,13 +21,14 @@ fun Canvas.drawSSWNode(i : Int, scale : Float, paint : Paint) {
     val h : Float = height.toFloat()
     paint.strokeWidth = Math.min(w, h) / 60
     paint.strokeCap = Paint.Cap.ROUND
+    paint.style = Paint.Style.STROKE
     val gap : Float = w / (nodes)
     save()
     translate(gap * i, h/2)
     for (j in 0..1) {
         val x : Float = gap/2 * j
         val sf : Float = 1f - 2 * j
-        val sc : Float = Math.min(0.5f, Math.max(scale - 0.5f, 0f)) * 2
+        val sc : Float = Math.min(0.5f, Math.max(scale - j * 0.5f, 0f)) * 2
         val path : Path = Path()
         path.moveTo(x, 0f)
         path.lineTo(x, gap/4 * sf * sc)
