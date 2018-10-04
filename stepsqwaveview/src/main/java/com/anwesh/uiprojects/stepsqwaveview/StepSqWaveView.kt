@@ -167,4 +167,26 @@ class StepSqWaveView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : StepSqWaveView) {
+
+        private val ssw : StepSqWave = StepSqWave(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#BDBDBD"))
+            ssw.draw(canvas, paint)
+            animator.animate {
+                ssw.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ssw.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
