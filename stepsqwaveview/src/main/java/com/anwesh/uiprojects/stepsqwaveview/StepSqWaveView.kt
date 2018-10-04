@@ -4,6 +4,7 @@ package com.anwesh.uiprojects.stepsqwaveview
  * Created by anweshmishra on 04/10/18.
  */
 
+import android.app.Activity
 import android.view.View
 import android.view.MotionEvent
 import android.graphics.Paint
@@ -189,6 +190,15 @@ class StepSqWaveView(ctx : Context) : View(ctx) {
             ssw.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+
+        fun create(activity : Activity) : StepSqWaveView {
+            val view : StepSqWaveView = StepSqWaveView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
